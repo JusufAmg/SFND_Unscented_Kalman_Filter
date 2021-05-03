@@ -3,6 +3,7 @@
 
 #include "Eigen/Dense"
 #include "measurement_package.h"
+#include <iostream>
 
 class UKF {
  public:
@@ -28,7 +29,7 @@ class UKF {
    * @param delta_t Time between k and k+1 in s
    */
   void Prediction(double delta_t);
-
+ 
   /**
    * Updates the state and the state covariance matrix using a laser measurement
    * @param meas_package The measurement at k+1
@@ -95,9 +96,8 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
-  // cross correlation Tc
-  Eigen::VectorXd Tc_lidar_;
-  Eigen::VectorXd Tc_radar_;
+  Eigen::MatrixXd Tc_lidar_;
+  Eigen::MatrixXd Tc_radar_;
   int n_z_lidar_;
   int n_z_radar_;
 };
